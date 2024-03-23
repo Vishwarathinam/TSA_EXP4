@@ -1,5 +1,5 @@
 # Ex.No:04   FIT ARMA MODEL FOR TIME SERIES
-# Date: 
+# Date:
 
 
 
@@ -23,25 +23,69 @@ axis limits.
 6. Display the autocorrelation and partial autocorrelation plots for the ARMA(2,2) process using
 plot_acf and plot_pacf.
 ### PROGRAM:
+~~~
+from pandas import read_csv
+from pandas import datetime
+from matplotlib import pyplot
+from pandas.plotting import autocorrelation_plot
+from pandas import DataFrame
+from statsmodels.tsa.arima_model import ARIMA
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+from statsmodels.tsa.arima_process import ArmaProcess
+import matplotlib.pyplot as plt
+import numpy as np
+import warnings
+warnings.filterwarnings('ignore')
+import matplotlib.pyplot as plt
+import numpy as np
 
-OUTPUT:
-SIMULATED ARMA(1,1) PROCESS:
+plt.rcParams['figure.figsize'] = [10, 7.5]
+
+ar1 = np.array([1,0.33])
+ma1 = np.array([1,0.9])
+ARMA_1 = ArmaProcess(ar1,ma1).generate_sample(nsample = 1000)
+plt.plot(ARMA_1)
+plt.title('Simulated ARMA(1,1) Process')
+plt.xlim([0, 200])
+plt.show()
+plot_acf(ARMA_1)
+plot_pacf(ARMA_1)
+ar2 = np.array([1, 0.33, 0.5])
+ma2 = np.array([1, 0.9, 0.3])
+ARMA_2 = ArmaProcess(ar2, ma2).generate_sample(nsample=10000)
+plt.plot(ARMA_2)
+plt.title('Simulated ARMA(2,2) Process')
+plt.xlim([0, 200])
+plt.show()
+plot_acf(ARMA_2)
+plot_pacf(ARMA_2)
+~~~
+### OUTPUT:
+#### SIMULATED ARMA(1,1) PROCESS:
+![v1](https://github.com/Vishwarathinam/TSA_EXP4/assets/95266350/7a43ed4f-6607-4c3b-978c-9cdfbc812865)
 
 
 
-Partial Autocorrelation
+#### Partial Autocorrelation
+![v2](https://github.com/Vishwarathinam/TSA_EXP4/assets/95266350/8aaf4472-ac1a-4b97-b5f8-dbe322b27472)
 
-Autocorrelation
+#### Autocorrelation
+
+![v3](https://github.com/Vishwarathinam/TSA_EXP4/assets/95266350/403f0955-6a6c-4d64-9887-12ffa4adce15)
+
+#### SIMULATED ARMA(2,2) PROCESS:
+
+![v4](https://github.com/Vishwarathinam/TSA_EXP4/assets/95266350/de4497d0-a00e-4976-bf1e-09ae5dcc033e)
+
+#### Partial Autocorrelation
+
+![v5](https://github.com/Vishwarathinam/TSA_EXP4/assets/95266350/0d256a97-e21d-4fec-b91c-c4294de9be53)
 
 
 
-SIMULATED ARMA(2,2) PROCESS:
+#### Autocorrelation
 
-Partial Autocorrelation
+![v6](https://github.com/Vishwarathinam/TSA_EXP4/assets/95266350/e0ace6c2-4c4c-4942-ae24-139ebe2dd157)
 
-
-
-Autocorrelation
-
-RESULT:
+### RESULT:
 Thus, a python program is created to fir ARMA Model successfully.
